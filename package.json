@@ -1,0 +1,27 @@
+{
+  "name": "wecan",
+  "version": "1.0.0",
+  "description": "WebComponents vs. AngularJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ohader/wecan.git"
+  },
+  "keywords": [
+    "experimental",
+    "comparison",
+    "data-binding"
+  ],
+  "author": "Oliver Hader <oliver@typo3.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ohader/wecan/issues"
+  },
+  "homepage": "https://github.com/ohader/wecan",
+  "dependencies": {
+    "bower": "^1.4.1"
+  }
+}
