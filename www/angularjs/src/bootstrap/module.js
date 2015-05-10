@@ -13,10 +13,10 @@ angular.module('bootstrap', [])
 			}
 		},
 		controller: function($scope, $compile, $http) {
-			$scope.brand = '';
+			$scope.brand = '[undefined]';
 			$scope.items = [];
 			$scope.link = function(target) {
-				return (target ? '/' + target : '');
+				return (target ? '#/' + target : '#');
 			};
 		}
 	};
