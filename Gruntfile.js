@@ -8,7 +8,10 @@ module.exports = function(grunt) {
 					{expand: true, cwd: './bower_components/jquery/dist/', src: ['**'], dest: 'www/angularjs/src/vendor/jquery/', filter: 'isFile'},
 					{expand: true, cwd: './bower_components/bootstrap/dist/', src: ['**'], dest: 'www/angularjs/src/vendor/bootstrap/', filter: 'isFile'},
 
-					{expand: true, cwd: './bower_components/webcomponentsjs/', src: ['webcomponents.js'], dest: 'www/webcomponents/src/', filter: 'isFile'}
+					{expand: true, cwd: './bower_components/webcomponentsjs/', src: ['*.js'], dest: 'www/webcomponents/src/vendor/webcomponents/', filter: 'isFile'},
+					{expand: true, cwd: './bower_components/polymer/', src: ['*', 'src/**'], dest: 'www/webcomponents/src/vendor/polymer/', filter: 'isFile'},
+					{expand: true, cwd: './bower_components/jquery/dist/', src: ['**'], dest: 'www/webcomponents/src/vendor/jquery/', filter: 'isFile'},
+					{expand: true, cwd: './bower_components/bootstrap/dist/', src: ['**'], dest: 'www/webcomponents/src/vendor/bootstrap/', filter: 'isFile'},
 				]
 			}
 		}
