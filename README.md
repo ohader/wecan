@@ -15,6 +15,9 @@ way.
 
 ### Bootstrap Navigation Bar ```bootstrap-navbar```
 
+The scope is to create an own custom element that has nested elements
+that share one common parent scope.
+
 #### AngularJS
 
 ```
