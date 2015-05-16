@@ -16,7 +16,7 @@ angular.module('bootstrap', [])
 			$scope.brand = '[undefined]';
 			$scope.items = [];
 			$scope.link = function(target) {
-				return (target ? '#/' + target : '#');
+				return '#/' + target;
 			};
 		}
 	};
@@ -26,7 +26,7 @@ angular.module('bootstrap', [])
 		restrict: 'E',
 		require: '^bootstrapNavbar',
 		link: function($scope, element, attrs, controller) {
-			$scope.brand = attrs.name;
+			$scope.brand = attrs.name || $scope.brand;
 		}
 	};
 })

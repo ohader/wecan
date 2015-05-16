@@ -20,7 +20,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">{{brand}}</a>
+					<a class="navbar-brand" href="{{link(empty)}}">{{brand}}</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -52,10 +52,14 @@
 			ready: function() {
 				this.brand = '[undefined]';
 				this.items = [];
+				// Use empty variable for linking, since writing "#/" directly
+				// to DOM template prefixes the baseURI of the owner document
+				// resulting in "/webcomponents/bootstrap/navbar.html#/"
+				this.empty = '';
 			},
 
 			link: function(target) {
-				return (target ? '#/' + target : '#');
+				return '#/' + target;
 			}
 		});
 	</script>
