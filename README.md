@@ -100,5 +100,69 @@ Actually the used ```app-route``` component does not require Polymer.
 
 ### Google Maps
 
+#### AngularJS
+
+```
+	<ui-gmap-google-map center="map.center" zoom="map.zoom" control="map.control">
+		<ui-gmap-markers models="markers" coords="'self'" options="'self'">
+			<ui-gmap-windows>
+				<strong ng-non-bindable>{{title}}</strong>
+			</ui-gmap-windows>
+		</ui-gmap-markers>
+	</ui-gmap-google-map>
+```
+
+[usage](www/angularjs/partials/map.html)
+
+```
+	.controller('mapCtrl', ['$scope', 'uiGmapGoogleMapApi', function($scope) {
+		var destroyControlWatch, $container;
+	
+		angular.extend($scope, {
+			map: {
+				control: {},
+				center: { latitude: 50.32497, longitude: 11.94023 },
+				zoom: 14
+			},
+			markers: [
+				{
+					id: 'Hof.University',
+					title: 'Hof University',
+					latitude: 50.32497,
+					longitude: 11.94023
+				},
+				{
+					id: 'Hof.Theresienstein',
+					title: 'Theresienstein City Park',
+					latitude: 50.3276403,
+					longitude: 11.9200896
+				}
+			]
+		});
+
+		// ...
+		// and a lot of more functions to handle
+		// bounds calculation and resize updates
+		// ...
+	}])
+```
+
+[configuration](www/angularjs/src/app.js)
+
+#### Polymer Web Components
+
+```
+	<google-map latitude="50.32497" longitude="11.94023" zoom="13" fit-to-markers="1">
+		<google-map-marker latitude="50.32497" longitude="11.94023">
+			<strong>Hof University</strong>
+		</google-map-marker>
+		<google-map-marker latitude="50.3276403" longitude="11.9200896">
+			<strong>Theresienstein City Park</strong>
+		</google-map-marker>
+	</google-map>
+```
+
+[usage](www/webcomponents/partials/map.html)
+
 ### Communication Widgets
 
