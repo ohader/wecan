@@ -46,6 +46,58 @@ that share one common parent scope.
 
 [source](www/webcomponents/src/bootstrap/)
 
+### Routing
+
+#### AngularJS
+
+```
+	<div ng-view></div>
+```
+
+[usage](www/angularjs/index.html)
+
+```
+	angular.module('wecan', [..., 'ngRoute', ...])
+	.config(
+	['$routeProvider', function($routeProvider) {
+		$routeProvider
+		.when('/home', {
+			templateUrl: 'partials/home.html',
+			controller: 'homeCtrl'
+		})
+		.when('/map', {
+			templateUrl: 'partials/map.html',
+			controller: 'mapCtrl'
+		})
+		.when('/communication', {
+			templateUrl: 'partials/communication.html',
+			controller: 'communicationCtrl'
+		})
+		.otherwise({
+			redirectTo: '/home'
+		});
+	}])
+```
+
+[configuration](www/angularjs/src/app.js)
+[partials](www/angularjs/partials/)
+
+#### (Polymer) Web Components
+
+Actually the used ```app-route``` component does not require Polymer.
+
+```
+	<app-router>
+		<app-route path="/home" import="partials/home.html" template></app-route>
+		<app-route path="/map" import="partials/map.html" template></app-route>
+		<app-route path="/communication" import="partials/communication.html" template></app-route>
+		<app-route path="*" redirect="/home"></app-route>
+	</app-router>
+```
+
+[usage](www/webcomponents/index.html)
+[partials](www/webcomponents/partials/)
+
 ### Google Maps
 
 ### Communication Widgets
