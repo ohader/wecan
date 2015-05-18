@@ -14,7 +14,7 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li ng-repeat="item in items"><a href="{{link(item.target)}}">{{item.name}}</a></li>
+				<li ng-repeat="item in items" data-item-index="{{item.index}}"><a href="{{link(item.target)}}">{{item.name}}</a></li>
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
