@@ -1,4 +1,4 @@
-angular.module('wecan', ['bootstrap', 'ngRoute', 'uiGmapgoogle-maps'])
+angular.module('wecan', ['bootstrap', 'ngRoute', 'uiGmapgoogle-maps', 'communication'])
 .config(
 ['$routeProvider', function($routeProvider) {
     $routeProvider
