@@ -15,12 +15,12 @@
 	<div class="page-header">
 		<h3>Map <small>3rd party</small></h3>
 	</div>
-
-	<ui-gmap-google-map center="map.center" zoom="map.zoom" control="map.control">
-		<ui-gmap-markers models="markers" coords="'self'" options="'self'">
-			<ui-gmap-windows>
-				<strong ng-non-bindable>{{title}}</strong>
-			</ui-gmap-windows>
-		</ui-gmap-markers>
-	</ui-gmap-google-map>
 </div>
+
+<ui-gmap-google-map center="map.center" zoom="map.zoom" control="map.control">
+	<ui-gmap-markers models="markers" coords="'self'" options="'self'">
+		<ui-gmap-windows>
+			<strong ng-non-bindable>{{title}}</strong>
+		</ui-gmap-windows>
+	</ui-gmap-markers>
+</ui-gmap-google-map>
