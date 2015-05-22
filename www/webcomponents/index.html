@@ -5,14 +5,14 @@
 	<title>The Web Components way</title>
 	<script src="src/vendor/webcomponents/webcomponents-lite.js" type="text/javascript"></script>
 	<link href="src/vendor/app-router/app-router.html" rel="import">
-	<link href="src/bootstrap/navbar-parent.html" rel="import">
+	<link href="src/bootstrap/navbar-nested.html" rel="import">
 </head>
 <body>
 	<bootstrap-navbar>
-		<bootstrap-navbar-brand name="WeCan" />
-		<bootstrap-navbar-item name="Home" target="home" />
-		<bootstrap-navbar-item name="Google Map" target="map" />
-		<bootstrap-navbar-item name="Communication" target="communication" />
+		<bootstrap-navbar-brand name="WeCan"></bootstrap-navbar-brand>
+		<bootstrap-navbar-item name="Home" target="home"></bootstrap-navbar-item>
+		<bootstrap-navbar-item name="Google Map" target="map"></bootstrap-navbar-item>
+		<bootstrap-navbar-item name="Communication" target="communication"></bootstrap-navbar-item>
 	</bootstrap-navbar>
 
 	<app-router>

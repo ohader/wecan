@@ -1,0 +1,30 @@
+<script>
+	NavbarBehavior = {
+		properties: {
+			empty: {
+				type: String,
+				value: ''
+			}
+		},
+		processStyleSheetsDelayed: function() {
+			// DOM is applied late, this is just a hack, though
+			return window.setTimeout(
+				this.processStyleSheets.bind(this), 10
+			);
+		},
+		processStyleSheets: function() {
+			var forger = new CssForger();
+
+			Polymer.dom(this).childNodes.forEach(function(childNode) {
+				if (childNode instanceof HTMLElement && childNode.nodeName.startsWith('BOOTSTRAP-NAVBAR-')) {
+					forger.process(childNode, childNode.parentNode);
+				}
+			});
+
+			forger.publish();
+		},
+		link: function (target) {
+			return '#/' + target;
+		}
+	};
+</script>
