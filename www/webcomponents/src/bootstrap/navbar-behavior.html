@@ -16,7 +16,7 @@
 			var forger = new CssForger();
 
 			Polymer.dom(this).childNodes.forEach(function(childNode) {
-				if (childNode instanceof HTMLElement && childNode.nodeName.startsWith('BOOTSTRAP-NAVBAR-')) {
+				if (childNode instanceof HTMLElement && childNode.nodeName.match(/^BOOTSTRAP-NAVBAR-/)) {
 					forger.process(childNode, childNode.parentNode);
 				}
 			});
