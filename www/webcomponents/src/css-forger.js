@@ -19,6 +19,21 @@ CssForger = function() {
         }
     };
 
+    /**
+     * @returns {string}
+     */
+    this.combine = function() {
+        var cssRulesText = '';
+
+        this.createdCssRules.forEach(function(cssRules, styleSheetIndex) {
+            cssRules.forEach(function(cssRule) {
+                cssRulesText += cssRule + "\n";
+            });
+        });
+
+        return cssRulesText;
+    };
+
     this.publish = function() {
         this.createdCssRules.forEach(function(cssRules, styleSheetIndex) {
             var styleSheet = document.styleSheets.item(styleSheetIndex);
