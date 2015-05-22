@@ -45,7 +45,7 @@
 
 <dom-module name="bootstrap-navbar-brand">
 	<template>
-		<a class="navbar-brand" href="[[link(empty)]]">{{name}}</a>
+		<a class="navbar-brand" href="[[link(empty)]]">{{name}}<content></content></a>
 	</template>
 	<script>
 		Polymer({
@@ -60,7 +60,7 @@
 
 <dom-module name="bootstrap-navbar-item">
 	<template>
-		<li><a href="{{link(target)}}">{{name}}</a></li>
+		<li><a href="{{link(target)}}">{{name}}<content></content></a></li>
 	</template>
 	<script>
 		Polymer({
