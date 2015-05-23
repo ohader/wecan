@@ -1,0 +1,144 @@
+<link href="../vendor/polymer/polymer.html" rel="import">
+
+<script src="../vendor/jquery/jquery.js" type="text/javascript"></script>
+<script src="../vendor/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+
+<dom-module name="bootstrap-navbar">
+	<template>
+		<link href="../vendor/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet">
+
+		<common-signals on-common-signal-bootstrap-navbar-brand="onBrandSignal"></common-signals>
+		<common-signals on-common-signal-bootstrap-navbar-item="onItemSignal"></common-signals>
+
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="{{link(empty)}}">{{brand}}</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<template is="dom-repeat" items="{{items}}">
+							<li><a href="{{link(item.target)}}">{{item.name}}</a></li>
+						</template>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
+	</template>
+
+	<script>
+		Polymer({
+			is: 'bootstrap-navbar',
+
+			onBrandSignal: function(event, brand, sender) {
+				this.brand = brand.name;
+			},
+			onItemSignal: function(event, item, sender) {
+				var items = this.items.slice(0);
+				items.push({ name: item.name, target: item.target });
+				// Reassign array, data-binding currently
+				// does not listen on Array.push
+				this.items = items;
+			},
+			ready: function() {
+				this.brand = '[undefined]';
+				this.items = [];
+				// Use empty variable for linking, since writing "#/" directly
+				// to DOM template prefixes the baseURI of the owner document
+				// resulting in "/webcomponents/bootstrap/navbar.html#/"
+				this.empty = '';
+			},
+
+			link: function(target) {
+				return '#/' + target;
+			}
+		});
+	</script>
+</dom-module>
+
+<dom-module name="bootstrap-navbar-brand">
+	<script>
+		Polymer({
+			is: 'bootstrap-navbar-brand',
+			properties: {
+				name: String
+			},
+			ready: function() {
+				this.fire('common-signal', { name: this.is, data: this }, { node: document });
+			}
+		});
+	</script>
+</dom-module>
+
+<dom-module name="bootstrap-navbar-item">
+	<script>
+		Polymer({
+			is: 'bootstrap-navbar-item',
+			properties: {
+				name: String,
+				target: String
+			},
+			ready: function() {
+				this.fire('common-signal', { name: this.is, data: this }, { node: document });
+			}
+		});
+	</script>
+</dom-module>
+
+<!-- Forked from core-signals due incompatibility with Polymer ~0.8 -->
+<dom-module name="common-signals">
+	<script>
+		(function(){
+			Polymer({
+				is: 'common-signals',
+				attached: function() {
+					signals.push(this);
+				},
+				removed: function() {
+					var i = signals.indexOf(this);
+					if (i >= 0) {
+						signals.splice(i, 1);
+					}
+				}
+			});
+
+			// private shared database
+			var signals = [];
+
+			// signal dispatcher
+			function notify(name, data) {
+				// convert generic-signal event to named-signal event
+				var signal = new CustomEvent('common-signal-' + name, {
+					// if signals bubble, it's easy to get confusing duplicates
+					// (1) listen on a container on behalf of local child
+					// (2) some deep child ignores the event and it bubbles
+					//     up to said container
+					// (3) local child event bubbles up to container
+					// also, for performance, we avoid signals flying up the
+					// tree from all over the place
+					bubbles: false,
+					detail: data
+				});
+				// dispatch named-signal to all 'signals' instances,
+				// only interested listeners will react
+				signals.forEach(function(s) {
+					s.dispatchEvent(signal);
+				});
+			}
+
+			// signal listener at document
+			document.addEventListener('common-signal', function(e) {
+				notify(e.detail.name, e.detail.data);
+			});
+		})();
+	</script>
+</dom-module>

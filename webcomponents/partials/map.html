@@ -1,0 +1,31 @@
+<link href="../src/vendor/google-map/google-map.html" rel="import">
+
+<style>
+	google-map { height: 200px; }
+	@media (min-width: 768px) {
+		google-map { height: 288px; }
+	}
+	@media (min-width: 992px) {
+		google-map { height: 372px; }
+	}
+	@media (min-width: 1200px) {
+		google-map { height: 450px; }
+	}
+</style>
+
+<template>
+	<div class="container-fluid">
+		<div class="page-header">
+			<h3>Map <small>3rd party</small></h3>
+		</div>
+	</div>
+
+	<google-map latitude="50.32497" longitude="11.94023" zoom="13" fit-to-markers="1">
+		<google-map-marker latitude="50.32497" longitude="11.94023">
+			<strong>Hof University</strong>
+		</google-map-marker>
+		<google-map-marker latitude="50.3276403" longitude="11.9200896">
+			<strong>Theresienstein City Park</strong>
+		</google-map-marker>
+	</google-map>
+</template>

@@ -1,0 +1,58 @@
+<script>
+
+	var CommunicationMessageBehavior = (function() {
+		/**
+		 * @type {Array.<Object>}
+		 */
+		var subscribers = [];
+
+		/**
+		 * @type {Array.<Object>}
+		 */
+		var messages = [
+			{
+				content: 'Add new messages in the input field below...'
+			}, {
+				content: '... and watch the message count in the nav bar!'
+			}
+		];
+
+		return {
+			/**
+			 * @type {Object.<String, Object>}
+			 */
+			properties: {
+				messages: {
+					type: Array,
+					value: messages,
+					notify: true,
+					observer: 'messagesChanged'
+				}
+			},
+
+			/**
+			 * Observer, just used here to determine subscribers
+			 * using this behavior. For whatever reason, those need
+			 * to be notified explicitly on data updates.
+			 *
+			 * @param {*} newValue
+			 * @param {*} oldValue
+			 */
+			messagesChanged: function (newValue, oldValue) {
+				if (typeof oldValue === 'undefined' && subscribers.indexOf(this) === -1) {
+					subscribers.push(this);
+				}
+			},
+
+			/**
+			 * Notifies all subscribers of this behavior.
+			 */
+			notifySubscribers: function() {
+				subscribers.forEach(function(subscriber) {
+					subscriber.notifyPath('messages', this.messages.concat());
+				}.bind(this));
+			}
+		};
+	})();
+
+</script>
