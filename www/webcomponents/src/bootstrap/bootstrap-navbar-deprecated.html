@@ -1,14 +1,14 @@
-<link href="../../../vendor/polymer/polymer.html" rel="import">
+<link rel="import" href="../../../vendor/polymer/polymer.html">
 
 <script src="../../../vendor/jquery/dist/jquery.js" type="text/javascript"></script>
 <script src="../../../vendor/bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
 
-<dom-module name="bootstrap-navbar">
+<dom-module name="bootstrap-navbar-deprecated">
 	<template>
 		<link href="../../../vendor/bootstrap/dist/css/bootstrap.css" type="text/css" rel="stylesheet">
 
-		<common-signals on-common-signal-bootstrap-navbar-brand="onBrandSignal"></common-signals>
-		<common-signals on-common-signal-bootstrap-navbar-item="onItemSignal"></common-signals>
+		<common-signals on-common-signal-bootstrap-navbar-deprectated-brand="onBrandSignal"></common-signals>
+		<common-signals on-common-signal-bootstrap-navbar-deprectated-item="onItemSignal"></common-signals>
 
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
@@ -37,7 +37,7 @@
 
 	<script>
 		Polymer({
-			is: 'bootstrap-navbar',
+			is: 'bootstrap-navbar-deprecated',
 
 			onBrandSignal: function(event, brand, sender) {
 				this.brand = brand.name;
@@ -65,10 +65,10 @@
 	</script>
 </dom-module>
 
-<dom-module name="bootstrap-navbar-brand">
+<dom-module name="bootstrap-navbar-deprectated-brand">
 	<script>
 		Polymer({
-			is: 'bootstrap-navbar-brand',
+			is: 'bootstrap-navbar-deprecated-brand',
 			properties: {
 				name: String
 			},
@@ -79,10 +79,10 @@
 	</script>
 </dom-module>
 
-<dom-module name="bootstrap-navbar-item">
+<dom-module name="bootstrap-navbar-deprecated-item">
 	<script>
 		Polymer({
-			is: 'bootstrap-navbar-item',
+			is: 'bootstrap-navbar-deprecated-item',
 			properties: {
 				name: String,
 				target: String

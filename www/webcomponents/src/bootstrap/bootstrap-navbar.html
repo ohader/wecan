@@ -1,5 +1,7 @@
-<link href="../../../vendor/polymer/polymer.html" rel="import">
-<link href="navbar-behavior.html" rel="import">
+<link rel="import" href="../../../vendor/polymer/polymer.html">
+<link rel="import" href="bootstrap-navbar-behavior.html">
+<link rel="import" href="bootstrap-navbar-brand.html">
+<link rel="import" href="bootstrap-navbar-item.html">
 
 <script src="../../../vendor/jquery/dist/jquery.js" type="text/javascript"></script>
 <script src="../../../vendor/bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
@@ -50,38 +52,7 @@
 	<script>
 		Polymer({
 			is: 'bootstrap-navbar',
-			behaviors: [NavbarBehavior]
-		});
-	</script>
-</dom-module>
-
-<dom-module name="bootstrap-navbar-brand">
-	<template>
-		<a class="navbar-brand" href="[[link(empty)]]">{{name}}<content></content></a>
-	</template>
-	<script>
-		Polymer({
-			is: 'bootstrap-navbar-brand',
-			behaviors: [NavbarBehavior],
-			properties: {
-				name: String
-			}
-		});
-	</script>
-</dom-module>
-
-<dom-module name="bootstrap-navbar-item">
-	<template>
-		<li><a href="{{link(target)}}">{{name}}<content></content></a></li>
-	</template>
-	<script>
-		Polymer({
-			is: 'bootstrap-navbar-item',
-			behaviors: [NavbarBehavior],
-			properties: {
-				name: String,
-				target: String
-			}
+			behaviors: [BootstrapNavbarBehavior]
 		});
 	</script>
 </dom-module>

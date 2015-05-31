@@ -1,6 +1,5 @@
 <link rel="import" href="../../../vendor/polymer/polymer.html">
 <link rel="import" href="../../../vendor/gold-email-input/gold-email-input.html">
-<link rel="import" href="elements-input-container.html">
 
 <dom-module name="elements-email-input">
 	<style>
@@ -86,7 +85,7 @@
 				container._computeInputContentClass = function() {
 					return originalContainerFunction.call(container, arguments).replace(/^(input-content)/, 'paper-$1');
 				};
-			},
+			}
 		});
 	</script>
 </dom-module>
