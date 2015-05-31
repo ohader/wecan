@@ -5,14 +5,26 @@
 			empty: {
 				type: String,
 				value: ''
+			},
+			notStrict: {
+				type: Boolean,
+				value: false
 			}
 		},
+
+		/**
+		 * @deprecated Not used anymore
+		 */
 		processStyleSheetsDelayed: function() {
 			// DOM is applied late, this is just a hack, though
 			return window.setTimeout(
 				this.processStyleSheets.bind(this), 10
 			);
 		},
+
+		/**
+		 * @deprecated Not used anymore
+		 */
 		processStyleSheets: function() {
 			var forger = new CssForger();
 
@@ -24,6 +36,19 @@
 
 			forger.publish();
 		},
+
+		/**
+		 * @param {string} nodeName
+		 * @returns {boolean}
+		 */
+		hasNodeType: function(nodeName) {
+			return (Polymer.dom(this).querySelectorAll(nodeName).length > 0);
+		},
+
+		/**
+		 * @param {string} target
+		 * @returns {string}
+		 */
 		link: function (target) {
 			return '#/' + target;
 		}

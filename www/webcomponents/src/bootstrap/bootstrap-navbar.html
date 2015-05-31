@@ -14,7 +14,7 @@
 		<style>
 			/**
 			 * Shadow DOM Styles created with CssForger
-			 * '***' marks the left out selector
+			 * '***' marks the omitted selector
 			 */
 			.nav /***/ li>a { position: relative; display: block; padding: 10px 15px; }
 			.navbar-nav /***/ li>a { padding-top: 10px; padding-bottom: 10px; line-height: 20px; }
@@ -48,6 +48,9 @@
 						<content select="bootstrap-navbar-item" />
 					</ul>
 				</div><!-- /.navbar-collapse -->
+				<template is="dom-if" if="[[notStrict]]">
+					<content></content>
+				</template>
 			</div><!-- /.container-fluid -->
 		</nav>
 	</template>
@@ -55,16 +58,7 @@
 	<script>
 		Polymer({
 			is: 'bootstrap-navbar',
-
-			behaviors: [BootstrapNavbarBehavior],
-
-			/**
-			 * @param {String} nodeName
-			 * @returns {boolean}
-			 */
-			hasNodeType: function(nodeName) {
-				return (Polymer.dom(this).querySelectorAll(nodeName).length > 0);
-			}
+			behaviors: [BootstrapNavbarBehavior]
 		});
 	</script>
 </dom-module>
