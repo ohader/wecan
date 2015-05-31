@@ -1,57 +1,57 @@
 angular.module('bootstrap', [])
 .directive('bootstrapNavbar', function($compile, $http, $templateCache) {
-	return {
-		restrict: 'E',
+    return {
+        restrict: 'E',
         priority: 100,
-		compile: function(tElement, tAttrs) {
-			return {
-				pre: function(scope, tElement, tAttrs, controller) {
+        compile: function(tElement, tAttrs) {
+            return {
+                pre: function(scope, tElement, tAttrs, controller) {
                     scope.$navbar = tElement;
                     scope.debug('bootstrapNavbar:compile.pre');
-				},
-				post: function(scope, iElement, iAttrs, controller) {
-					$http.get(iAttrs.src).success(function(data) {
+                },
+                post: function(scope, iElement, iAttrs, controller) {
+                    $http.get(iAttrs.src).success(function(data) {
                         $templateCache.put(iAttrs.src, data);
-						iElement.html(data);
-						$compile(iElement.contents())(scope);
-					});
+                        iElement.html(data);
+                        $compile(iElement.contents())(scope);
+                    });
                     scope.debug('bootstrapNavbar:compile.post');
-				}
-			}
-		},
-		controller: function($scope, $compile, $http) {
+                }
+            }
+        },
+        controller: function($scope, $compile, $http) {
             $scope.enableDebugging = true;
-			$scope.brand = '[undefined]';
-			$scope.items = [];
-			$scope.link = function(target) {
-				return '#/' + target;
-			};
+            $scope.brand = '[undefined]';
+            $scope.items = [];
+            $scope.link = function(target) {
+                return '#/' + target;
+            };
             $scope.debug = function(message) {
                 if ($scope.enableDebugging) {
                     console.log(message);
                 }
             };
             $scope.debug('bootstrapNavbar:controller');
-		}
-	};
+        }
+    };
 })
 .directive('bootstrapNavbarBrand', function() {
-	return {
-		restrict: 'E',
+    return {
+        restrict: 'E',
         priority: 100,
-		require: '^bootstrapNavbar',
-		link: function($scope, element, attrs, controller) {
-			$scope.brand = attrs.name || $scope.brand;
+        require: '^bootstrapNavbar',
+        link: function($scope, element, attrs, controller) {
+            $scope.brand = attrs.name || $scope.brand;
             $scope.debug('bootstrapNavbarBrand:link');
-		}
-	};
+        }
+    };
 })
 .directive('bootstrapNavbarItem', function() {
-	return {
+    return {
         scope: true,
-		restrict: 'E',
+        restrict: 'E',
         priority: 100,
-		require: '^bootstrapNavbar',
+        require: '^bootstrapNavbar',
         // Using compile.pre() instead of link() to keep the defined order
         compile: function(tElement, tAttrs) {
             return {
@@ -62,6 +62,6 @@ angular.module('bootstrap', [])
                 }
             }
         }
-	};
+    };
 })
 ;
