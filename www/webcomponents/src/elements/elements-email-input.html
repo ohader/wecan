@@ -1,0 +1,92 @@
+<link rel="import" href="../../../vendor/polymer/polymer.html">
+<link rel="import" href="../../../vendor/gold-email-input/gold-email-input.html">
+<link rel="import" href="elements-input-container.html">
+
+<dom-module name="elements-email-input">
+	<style>
+		:host {
+			--paper-input-container: {
+				padding: 0;
+			};
+		}
+	</style>
+	<template>
+		<paper-input-container id="container" no-label-float="true"
+			auto-validate="[[autoValidate]]"
+			attr-for-value="bind-value">
+
+			<div class="input-group">
+				<span class="input-group-addon">
+					<i class="glyphicon glyphicon-envelope"></i>
+					<label class="sr-only">{{label}}</label>
+				</span>
+
+				<email-validator></email-validator>
+
+				<input is="iron-input" class="form-control"
+					required$="[[required]]"
+					aria-labelledby$="[[_ariaLabelledBy]]"
+					aria-describedby$="[[_ariaDescribedBy]]"
+					validator="email-validator"
+					placeholder="{{label}}"
+					bind-value="{{value}}"
+					autocomplete="email"
+					name$="[[name]]" />
+
+				<span class="input-group-addon">
+					<span class="glyphicon glyphicon glyphicon-ok-circle text-success" hidden$="[[invalid]]"></span>
+					<span class="glyphicon glyphicon-exclamation-sign text-danger" hidden$="[[!invalid]]"></span>
+				</span>
+			</div>
+
+		</paper-input-container>
+	</template>
+	<script>
+		Polymer({
+			is: 'elements-email-input',
+
+			behaviors: [
+				Polymer.PaperInputBehavior,
+				Polymer.IronFormElementBehavior
+			],
+
+			properties: {
+				label: {
+					type: String,
+					value: 'Email contact'
+				},
+				invalid: {
+					type: Boolean
+				}
+			},
+
+			listeners: {
+				'iron-input-validate': '_handleInputValidate'
+			},
+
+			_handleInputValidate: function() {
+				// Fetch invalid property to our scope
+				this.invalid = this.$.container.invalid;
+			},
+
+			attached: function() {
+				var i, originalContainerFunction;
+				var selector = '.paper-input-container.underline, .paper-input-container.add-on-content';
+				var container = this.$.container;
+				var nodeList = container.querySelectorAll(selector);
+
+				// Remove superfluous nodes of paper-input-container
+				for (i=0; i<nodeList.length; i++) {
+					container.removeChild(nodeList.item(i));
+				}
+
+				// Override class name processing method of paper-input-container
+				// "input-content" becomes "paper-input-content" to avoid conflicts
+				originalContainerFunction = container._computeInputContentClass;
+				container._computeInputContentClass = function() {
+					return originalContainerFunction.call(container, arguments).replace(/^(input-content)/, 'paper-$1');
+				};
+			},
+		});
+	</script>
+</dom-module>

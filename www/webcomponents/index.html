@@ -17,12 +17,14 @@
 		<bootstrap-navbar-item name="Communication" target="communication">
 			<communication-message-count></communication-message-count>
 		</bootstrap-navbar-item>
+		<bootstrap-navbar-item name="Elements" target="elements"></bootstrap-navbar-item>
 	</bootstrap-navbar>
 
 	<app-router>
 		<app-route path="/home" import="partials/home.html" template></app-route>
 		<app-route path="/map" import="partials/map.html" template></app-route>
 		<app-route path="/communication" import="partials/communication.html" template></app-route>
+		<app-route path="/elements" import="partials/elements.html" template></app-route>
 		<app-route path="*" redirect="/home"></app-route>
 	</app-router>
 </body>

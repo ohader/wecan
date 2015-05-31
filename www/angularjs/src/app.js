@@ -14,6 +14,10 @@ angular.module('wecan', ['bootstrap', 'ngRoute', 'uiGmapgoogle-maps', 'communica
         templateUrl: 'partials/communication.html',
         controller: 'communicationCtrl'
     })
+    .when('/elements', {
+        templateUrl: 'partials/elements.html',
+        controller: 'elementsCtrl'
+    })
     .otherwise({
         redirectTo: '/home'
     });
@@ -100,4 +104,7 @@ angular.module('wecan', ['bootstrap', 'ngRoute', 'uiGmapgoogle-maps', 'communica
 }])
 .controller('communicationCtrl', function($scope) {
 
+})
+.controller('elementsCtrl', function($scope) {
+    $scope.email = 'your.name@';
 });
