@@ -1,0 +1,95 @@
+{
+  "name": "wecan",
+  "version": "1.0.0",
+  "homepage": "https://github.com/ohader/wecan",
+  "authors": [
+    "Oliver Hader <oliver@typo3.org>"
+  ],
+  "description": "WebComponents vs. AngularJS",
+  "keywords": [
+    "experimental",
+    "comparison",
+    "data-binding"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.4",
+    "polymer": "^1.0.0",
+    "app-router": "~2.6.1",
+    "google-map": "~1.0.0",
+    "gold-email-input": "PolymerElements/gold-email-input#~1.0.1"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/js/bootstrap.js",
+        "dist/css/bootstrap.css",
+        "dist/fonts/*",
+        "less/bootstrap.less"
+      ]
+    },
+    "google-apis": {
+      "main": [
+        "google-*.html"
+      ]
+    },
+    "google-map": {
+      "main": [
+        "google-map*.html"
+      ]
+    },
+    "gold-email-input": {
+      "main": [
+        "gold-email-input*.html"
+      ]
+    },
+    "iron-flex-layout": {
+      "main": [
+        "iron-flex-layout*.html",
+        "classes/iron-*.html"
+      ]
+    },
+    "iron-form-element-behavior": {
+      "main": [
+        "iron-form-element-behavior*.html"
+      ]
+    },
+    "iron-meta": {
+      "main": [
+        "iron-meta*.html"
+      ]
+    },
+    "paper-input": {
+      "main": [
+        "paper-input*.html",
+        "*-behavior.html"
+      ]
+    },
+    "paper-styles": {
+      "main": [
+        "paper-*.html",
+        "*.html"
+      ]
+    },
+    "polymer": {
+      "main": [
+        "polymer*.html"
+      ]
+    },
+    "webcomponentsjs": {
+      "main": [
+        "webcomponents.js",
+        "webcomponents-lite.js"
+      ]
+    }
+  }
+}

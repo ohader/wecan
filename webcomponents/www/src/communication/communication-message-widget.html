@@ -1,0 +1,43 @@
+<link rel="import" href="../../vendor/polymer/polymer.html">
+<link rel="import" href="communication-message-behavior.html">
+
+<dom-module name="communication-message-widget">
+	<template>
+		<div class="col-xs-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<div class="panel-title">
+						<h4>Communication Widget</h4>
+					</div>
+				</div>
+				<div class="panel-body">
+					<template is="dom-repeat" items="{{messages}}">
+						<div class="well well-sm" >{{item.content}}</div>
+					</template>
+				</div>
+				<div class="panel-footer">
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="glyphicon glyphicon-bullhorn"></i>
+						</span>
+						<input type="text" class="form-control" placeholder="Message" value="{{content::input}}">
+						<span class="input-group-addon">
+							<a type="button"><i class="glyphicon glyphicon-send" on-click="send"></i></a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<script>
+		Polymer({
+			is: 'communication-message-widget',
+			behaviors: [CommunicationMessageBehavior],
+			send: function() {
+				this.messages.push({ content: this.content });
+				this.notifySubscribers();
+				this.content = '';
+			}
+		});
+	</script>
+</dom-module>

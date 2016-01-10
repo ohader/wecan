@@ -1,0 +1,40 @@
+{
+  "name": "wecan",
+  "version": "1.0.0",
+  "homepage": "https://github.com/ohader/wecan",
+  "authors": [
+    "Oliver Hader <oliver@typo3.org>"
+  ],
+  "description": "WebComponents vs. AngularJS",
+  "keywords": [
+    "experimental",
+    "comparison",
+    "data-binding"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.4",
+    "angular": "~1.4.0",
+    "angular-route": "~1.4.0",
+    "angular-google-maps": "~2.1.1"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/js/bootstrap.js",
+        "dist/css/bootstrap.css",
+        "dist/fonts/*",
+        "less/bootstrap.less"
+      ]
+    }
+  }
+}

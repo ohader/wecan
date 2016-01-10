@@ -1,0 +1,14 @@
+<link rel="import" href="../../vendor/polymer/polymer.html">
+<link rel="import" href="communication-message-behavior.html">
+
+<dom-module name="communication-message-count">
+	<template>
+		<span class="badge">{{messages.length}}</span>
+	</template>
+	<script>
+		Polymer({
+			is: 'communication-message-count',
+			behaviors: [CommunicationMessageBehavior]
+		});
+	</script>
+</dom-module>

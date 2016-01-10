@@ -1,0 +1,17 @@
+<link rel="import" href="../../vendor/polymer/polymer.html">
+<link rel="import" href="bootstrap-navbar-behavior.html">
+
+<dom-module name="bootstrap-navbar-brand">
+	<template>
+		<a class="navbar-brand" href="[[link(empty)]]">{{name}}<content></content></a>
+	</template>
+	<script>
+		Polymer({
+			is: 'bootstrap-navbar-brand',
+			behaviors: [BootstrapNavbarBehavior],
+			properties: {
+				name: String
+			}
+		});
+	</script>
+</dom-module>
