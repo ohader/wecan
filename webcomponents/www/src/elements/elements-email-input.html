@@ -10,35 +10,30 @@
 		}
 	</style>
 	<template>
-		<paper-input-container id="container" no-label-float="true"
-			auto-validate="[[autoValidate]]"
-			attr-for-value="bind-value">
+		<div class="input-group">
+			<span class="input-group-addon">
+				<i class="glyphicon glyphicon-envelope"></i>
+				<label class="sr-only">{{label}}</label>
+			</span>
 
-			<div class="input-group">
-				<span class="input-group-addon">
-					<i class="glyphicon glyphicon-envelope"></i>
-					<label class="sr-only">{{label}}</label>
-				</span>
+			<input is="iron-input"
+				id="input"
+				type="email"
+				class="form-control"
+				required$="[[required]]"
+				aria-labelledby$="[[_ariaLabelledBy]]"
+				aria-describedby$="[[_ariaDescribedBy]]"
+				validator="email-validator"
+				placeholder="{{label}}"
+				bind-value="{{value}}"
+				autocomplete="email"
+				name$="[[name]]" />
 
-				<email-validator></email-validator>
-
-				<input is="iron-input" class="form-control"
-					required$="[[required]]"
-					aria-labelledby$="[[_ariaLabelledBy]]"
-					aria-describedby$="[[_ariaDescribedBy]]"
-					validator="email-validator"
-					placeholder="{{label}}"
-					bind-value="{{value}}"
-					autocomplete="email"
-					name$="[[name]]" />
-
-				<span class="input-group-addon">
-					<span class="glyphicon glyphicon glyphicon-ok-circle text-success" hidden$="[[invalid]]"></span>
-					<span class="glyphicon glyphicon-exclamation-sign text-danger" hidden$="[[!invalid]]"></span>
-				</span>
-			</div>
-
-		</paper-input-container>
+			<span class="input-group-addon">
+				<span class="glyphicon glyphicon glyphicon-ok-circle text-success" hidden$="[[invalid]]"></span>
+				<span class="glyphicon glyphicon-exclamation-sign text-danger" hidden$="[[!invalid]]"></span>
+			</span>
+		</div>
 	</template>
 	<script>
 		Polymer({
@@ -54,18 +49,83 @@
 					type: String,
 					value: 'Email contact'
 				},
-				invalid: {
-					type: Boolean
+
+				// Use default regular expression of type="email"
+				regex: {
+					type: String,
+					value: null
+				},
+
+				value: {
+					observer: '_onValueChanged'
 				}
 			},
 
-			listeners: {
-				'iron-input-validate': '_handleInputValidate'
+			observers: [
+				'_onFocusedChanged(focused)'
+			],
+
+			ready: function() {
+				// If there's an initial input, validate it.
+				if (this.value)
+					this._handleAutoValidate();
 			},
 
-			_handleInputValidate: function() {
-				// Fetch invalid property to our scope
-				this.invalid = this.$.container.invalid;
+			/**
+			 * A handler that is called on input
+			 */
+			_onValueChanged: function(value, oldValue) {
+				// The initial property assignment is handled by `ready`.
+				if (oldValue == undefined)
+					return;
+
+				this._handleAutoValidate();
+				console.log(this.invalid);
+			},
+
+			/**
+			 * Returns true if the element has a valid value, and sets the visual error
+			 * state.
+			 *
+			 * @return {boolean} Whether the input is currently valid or not.
+			 */
+			validate: function() {
+				var valid;
+
+				// Empty, non-required input is valid.
+				if (!this.required && this.value == '') {
+					valid = true;
+				} else if (this.regex === null) {
+					// If the regex isn't set, then use the native validator.
+					valid = this.$.input.validate();
+				} else {
+					// A blank regex means everything is valid. Else, check value against regex.
+					valid = new RegExp(this.regex, "i").test(this.value);
+				}
+
+				// Check if validity has changed
+				if (valid == this.invalid) {
+					// Update `this.invalid` since it's data-bound to container
+					this.invalid = !valid;
+
+					// Update container's addons (i.e. the custom error-message).
+					this.$.container.updateAddons({
+						inputElement: this.$.input,
+						value: this.value,
+						invalid: !valid
+					});
+				}
+
+				return valid;
+			},
+
+			/**
+			 * Overidden from Polymer.IronControlState.
+			 */
+			_onFocusedChanged: function(focused) {
+				if (!focused) {
+					this._handleAutoValidate();
+				}
 			},
 
 			attached: function() {
