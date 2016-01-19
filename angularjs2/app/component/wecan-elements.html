@@ -1,0 +1,22 @@
+<div class="container-fluid">
+	<div class="page-header">
+		<h3>Elements <small>as components</small></h3>
+	</div>
+</div>
+
+<div class="col-xs-4">
+	<h4>Email Input</h4>
+	<form name="emailForm">
+		<div class="input-group">
+			<span class="input-group-addon">
+				<i class="glyphicon glyphicon-envelope"></i>
+				<label for="emailField" class="sr-only">Email contact</label>
+			</span>
+			<input type="email" class="form-control" name="emailField" id="emailField" placeholder="Email contact" ng-model="email" required />
+			<span class="input-group-addon">
+				<span class="glyphicon glyphicon glyphicon-ok-circle text-success" ng-show="emailForm.emailField.$valid"></span>
+				<span class="glyphicon glyphicon-exclamation-sign text-danger" ng-show="emailForm.emailField.$invalid"></span>
+			</span>
+		</div>
+	</form>
+</div>

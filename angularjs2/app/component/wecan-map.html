@@ -1,0 +1,34 @@
+<style>
+	custom-google-map { height: 200px; }
+	@media (min-width: 768px) {
+		custom-google-map { height: 288px; }
+	}
+	@media (min-width: 992px) {
+		custom-google-map { height: 372px; }
+	}
+	@media (min-width: 1200px) {
+		custom-google-map { height: 450px; }
+	}
+</style>
+
+<div class="container-fluid">
+	<div class="page-header">
+		<h3>Map <small>3rd party</small></h3>
+	</div>
+</div>
+
+<custom-google-map
+	[fitBounds]="map.fitBounds"
+	[latitude]="map.center.latitude"
+	[longitude]="map.center.longitude"
+	[zoom]="map.zoom"
+	(mapClick)="mapClicked($event)">
+
+	<custom-google-map-marker
+		*ngFor="#marker of markers"
+		(markerClick)="clickedMarker(marker.label)"
+		[latitude]="marker.latitude"
+		[longitude]="marker.longitude"
+		[title]="marker.title"></custom-google-map-marker>
+
+</custom-google-map>

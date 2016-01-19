@@ -1,0 +1,23 @@
+<div class="col-xs-4">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<div class="panel-title">
+				<h4>Communication Widget</h4>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="well well-sm" ng-repeat="message in messages">{{message.content}}</div>
+		</div>
+		<div class="panel-footer">
+			<div class="input-group">
+				<span class="input-group-addon">
+					<i class="glyphicon glyphicon-bullhorn"></i>
+				</span>
+				<input type="text" class="form-control" placeholder="Message" ng-model="content">
+				<span class="input-group-addon">
+					<a type="button"><i class="glyphicon glyphicon-send" ng-click="send(content)"></i></a>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>
